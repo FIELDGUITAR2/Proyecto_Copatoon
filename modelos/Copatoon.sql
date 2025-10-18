@@ -1,7 +1,9 @@
 CREATE DATABASE IF NOT EXISTS Copatoon;
 USE Copatoon;
 
+-- =============================
 -- Tabla Administrador
+-- =============================
 CREATE TABLE Administrador (
     idAdministrador INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(45) NOT NULL,
@@ -10,13 +12,30 @@ CREATE TABLE Administrador (
     clave VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB;
 
--- Tabla Región
-CREATE TABLE Region (
-    idRegion INT AUTO_INCREMENT PRIMARY KEY,
-    nombreRegion VARCHAR(45) NOT NULL
+-- =============================
+-- Tabla Confederación (Nueva)
+-- =============================
+CREATE TABLE Confederacion (
+    idConfederacion INT AUTO_INCREMENT PRIMARY KEY,
+    nombreConfederacion VARCHAR(60) NOT NULL,
+    sigla VARCHAR(10) NOT NULL
 ) ENGINE=InnoDB;
 
+-- =============================
+-- Tabla Región
+-- =============================
+CREATE TABLE Region (
+    idRegion INT AUTO_INCREMENT PRIMARY KEY,
+    nombreRegion VARCHAR(45) NOT NULL,
+    idConfederacion INT NOT NULL,
+    FOREIGN KEY (idConfederacion) REFERENCES Confederacion(idConfederacion)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- =============================
 -- Tabla País
+-- =============================
 CREATE TABLE Pais (
     idPais INT AUTO_INCREMENT PRIMARY KEY,
     nombrePais VARCHAR(45) NOT NULL,
@@ -26,31 +45,39 @@ CREATE TABLE Pais (
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- Tabla Equipo
+-- =============================
+-- Tabla Equipo (Selecciones Nacionales)
+-- =============================
 CREATE TABLE Equipo (
     idEquipo INT AUTO_INCREMENT PRIMARY KEY,
-    nombreEquipo VARCHAR(45) NOT NULL,
+    nombreEquipo VARCHAR(60) NOT NULL,
     idPais INT NOT NULL,
     FOREIGN KEY (idPais) REFERENCES Pais(idPais)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- Tabla Local/Visitante
+-- =============================
+-- Tabla Local / Visitante
+-- =============================
 CREATE TABLE Loc_Vis (
     idLoc_Vis INT AUTO_INCREMENT PRIMARY KEY,
     nombreLoc_Vis VARCHAR(45) NOT NULL
 ) ENGINE=InnoDB;
 
+-- =============================
 -- Tabla Campeonato
+-- =============================
 CREATE TABLE Campeonato (
     idCampeonato INT AUTO_INCREMENT PRIMARY KEY,
-    nombreCampeonato VARCHAR(45) NOT NULL,
+    nombreCampeonato VARCHAR(60) NOT NULL,
     fechaInicio DATE NOT NULL,
     fechaFin DATE NOT NULL
 ) ENGINE=InnoDB;
 
+-- =============================
 -- Tabla Partido
+-- =============================
 CREATE TABLE Partido (
     idPartido INT AUTO_INCREMENT PRIMARY KEY,
     fechaPartido DATE NOT NULL,
@@ -61,7 +88,9 @@ CREATE TABLE Partido (
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- Tabla Partido_Equipo (relación N:N entre Partido y Equipo)
+-- =============================
+-- Tabla Partido_Equipo
+-- =============================
 CREATE TABLE Partido_Equipo (
     idPartido_Equipo INT AUTO_INCREMENT PRIMARY KEY,
     idPartido INT NOT NULL,
@@ -79,7 +108,9 @@ CREATE TABLE Partido_Equipo (
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- Tabla Campeonato_Equipo (relación N:N entre Campeonato y Equipo)
+-- =============================
+-- Tabla Campeonato_Equipo
+-- =============================
 CREATE TABLE Campeonato_Equipo (
     idCampeonato_Equipo INT AUTO_INCREMENT PRIMARY KEY,
     idCampeonato INT NOT NULL,
