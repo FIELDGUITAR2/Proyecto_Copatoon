@@ -18,7 +18,7 @@ class AdminDAO {
         return "SELECT idAdministrador 
                 FROM Administrador 
                 WHERE correo = '{$this->correo}' 
-                AND contrasenia = MD5('{$this->clave}')";
+                AND clave = MD5('{$this->clave}')";
     }
     public function consultar()
     {
