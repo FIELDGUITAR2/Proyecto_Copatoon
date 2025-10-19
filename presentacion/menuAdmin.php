@@ -50,10 +50,10 @@ $admin->consultar();
 						</a>
 						<ul class="dropdown-menu bg-dark border-warning">
 							<li><a class="dropdown-item text-warning bg-dark"
-									href="?pid=<?php echo base64_encode('presentacion/campeonato/consultarCampeonato.php') ?>">Consultar</a>
+									href="?pid=<?php echo base64_encode('presentacion/Admin/CrearCampeonato.php') ?>">Consultar</a>
 							</li>
 							<li><a class="dropdown-item text-warning bg-dark"
-									href="?pid=<?php echo base64_encode('presentacion/campeonato/crearCampeonato.php') ?>">Crear</a>
+									href="?pid=<?php echo base64_encode('presentacion/Admin/CrearCampeonato.php') ?>">Crear</a>
 							</li>
 						</ul>
 					</li>

@@ -41,6 +41,7 @@ $paginas_con_autenticacion = array(
     "presentacion/sesionAdmin.php",
     "presentacion/menuAdmin.php",
     "presentacion/encabezado.php",
+    "presentacion/Admin/CrearCampeonato.php",
     /*"presentacion/.php",
     "presentacion/.php",
     "presentacion/.php",
@@ -66,6 +67,5 @@ if(!isset($_GET["pid"])){
     }
 }
 ?>
-
 </html>
 
