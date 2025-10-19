@@ -1,5 +1,5 @@
 <body class="bg-light text-dark">
-	<?php include("presentacion/encabezado.php")?>
+	<?php include("presentacion/encabezado.php") ?>
 
 	<nav class="navbar navbar-expand-lg" style="background-color: #b30000;">
 		<div class="container">
@@ -7,14 +7,16 @@
 				Copatoon
 			</a>
 
-			<button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+			<button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarNav">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link text-warning fw-semibold" href="?pid=<?php echo base64_encode("presentacion/autenticar.php") ?>">
+						<a class="nav-link text-warning fw-semibold"
+							href="?pid=<?php echo base64_encode("presentacion/autenticar.php") ?>">
 							<i class="fas fa-user me-1"></i>Autenticar
 						</a>
 					</li>
@@ -35,9 +37,19 @@
 					<div class="card-header text-white fw-bold" style="background-color: #b30000;">
 						<h4 class="mb-0"><i class="fas fa-futbol me-2"></i>Próximos Partidos</h4>
 					</div>
-					<div class="card-body bg-light text-dark">
-						<p class="text-muted">No hay partidos programados por el momento.</p>
-					</div>
+					<table class="table table-striped table-hover text-center align-middle mb-0">
+						<thead class="table-danger">
+							<tr>
+								<th>Campeonato</th>
+								<th>Fecha</th>
+								<th>Hora</th>
+								<th>Equipo</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php include("presentacion/PartidosProximos.php"); ?>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
