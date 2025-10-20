@@ -34,6 +34,11 @@
         {
                 return $this->nombre;
         }
+
+        public function MostrarEquipoCampeonato()
+        {
+            return 0;
+        }
     }
 
 ?>
