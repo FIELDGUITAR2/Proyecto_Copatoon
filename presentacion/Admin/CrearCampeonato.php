@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once("logica/Admin.php");
 require_once("logica/Campeonato.php");
 require_once("persistencia/Conexion.php");

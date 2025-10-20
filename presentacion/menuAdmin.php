@@ -35,10 +35,10 @@ $admin->consultar();
 						</a>
 						<ul class="dropdown-menu bg-dark border-warning">
 							<li><a class="dropdown-item text-warning bg-dark"
-									href="?pid=<?php echo base64_encode('presentacion/equipo/buscarEquipo.php') ?>">Buscar</a>
+									href="?pid=<?php echo base64_encode('presentacion/Admin/VerEquipos.php') ?>">Ver Equipos</a>
 							</li>
 							<li><a class="dropdown-item text-warning bg-dark"
-									href="?pid=<?php echo base64_encode('presentacion/equipo/crearEquipo.php') ?>">Registrar</a>
+									href="?pid=<?php echo base64_encode('presentacion/Admin/AniadirEquipo.php') ?>">Registrar</a>
 							</li>
 						</ul>
 					</li>

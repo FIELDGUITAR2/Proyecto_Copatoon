@@ -42,6 +42,7 @@ $paginas_con_autenticacion = array(
     "presentacion/menuAdmin.php",
     "presentacion/encabezado.php",
     "presentacion/Admin/CrearCampeonato.php",
+    "presentacion/Admin/AniadirEquipo.php"
     /*"presentacion/.php",
     "presentacion/.php",
     "presentacion/.php",
