@@ -1,5 +1,11 @@
 <?php
+require_once("logica/Equipo.php");
+require_once("persistencia/Conexion.php");
 
+if (!isset($_SESSION["id"]) || $_SESSION["rol"] != "admin") {
+    header("Location: ?pid=" . base64_encode("presentacion/autenticar.php"));
+    exit();
+}
 ?>
 
 <?php
@@ -30,12 +36,12 @@ include("presentacion/menuAdmin.php");
                             <?php
                             $equipo = new Equipo();
                             $listaEquipos = $equipo->MostrarEquipoCampeonato();
-                            foreach ($listaEquipos as $e) {
+                            foreach ($listaEquipos as $c) {
                                 echo "<tr>";
-                                echo "<td>" . $e->getId() . "</td>";
-                                echo "<td class='fw-semibold'>" . $e->getNombre() . "</td>";
-                                echo "<td>" . $e->getPais()->getNombre() . "</td>";
-                                echo "<td>" . $e->getCampeonato()->getNombreCampeonato() . "</td>";
+                                echo "<td class='fw-semibold text-warning'>" . $c->getIdEquipo()->getId() . "</td>";
+                                echo "<td>" . $c->getIdEquipo()->getNombre() . "</td>";
+                                echo "<td>" . $c->getIdEquipo()->getPais()->getNombrePais() . "</td>";
+                                echo "<td>" . $c->getIdCampeonato()->getNombreCampeonato() . "</td>";
                                 echo "</tr>";
                             }
                             ?>

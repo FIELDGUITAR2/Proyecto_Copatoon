@@ -15,7 +15,6 @@ class Pais
         $this->region = $region;
     }
 
-
     /**
      * Get the value of nombrePais
      */
