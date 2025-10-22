@@ -4,7 +4,7 @@ USE Copatoon;
 -- =============================
 -- Tabla Administrador
 -- =============================
-CREATE TABLE Administrador (
+CREATE TABLE g4_administrador (
     idAdministrador INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(45) NOT NULL,
     apellido VARCHAR(45) NOT NULL,
@@ -13,9 +13,9 @@ CREATE TABLE Administrador (
 ) ENGINE=InnoDB;
 
 -- =============================
--- Tabla Confederación (Nueva)
+-- Tabla Confederación
 -- =============================
-CREATE TABLE Confederacion (
+CREATE TABLE g4_confederacion (
     idConfederacion INT AUTO_INCREMENT PRIMARY KEY,
     nombreConfederacion VARCHAR(60) NOT NULL,
     sigla VARCHAR(10) NOT NULL
@@ -24,11 +24,11 @@ CREATE TABLE Confederacion (
 -- =============================
 -- Tabla Región
 -- =============================
-CREATE TABLE Region (
+CREATE TABLE g4_region (
     idRegion INT AUTO_INCREMENT PRIMARY KEY,
     nombreRegion VARCHAR(45) NOT NULL,
     idConfederacion INT NOT NULL,
-    FOREIGN KEY (idConfederacion) REFERENCES Confederacion(idConfederacion)
+    FOREIGN KEY (idConfederacion) REFERENCES g4_confederacion(idConfederacion)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
@@ -36,23 +36,23 @@ CREATE TABLE Region (
 -- =============================
 -- Tabla País
 -- =============================
-CREATE TABLE Pais (
+CREATE TABLE g4_pais (
     idPais INT AUTO_INCREMENT PRIMARY KEY,
     nombrePais VARCHAR(45) NOT NULL,
     idRegion INT NOT NULL,
-    FOREIGN KEY (idRegion) REFERENCES Region(idRegion)
+    FOREIGN KEY (idRegion) REFERENCES g4_region(idRegion)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 -- =============================
--- Tabla Equipo (Selecciones Nacionales)
+-- Tabla Equipo
 -- =============================
-CREATE TABLE Equipo (
+CREATE TABLE g4_equipo (
     idEquipo INT AUTO_INCREMENT PRIMARY KEY,
     nombreEquipo VARCHAR(60) NOT NULL,
     idPais INT NOT NULL,
-    FOREIGN KEY (idPais) REFERENCES Pais(idPais)
+    FOREIGN KEY (idPais) REFERENCES g4_pais(idPais)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
@@ -60,7 +60,7 @@ CREATE TABLE Equipo (
 -- =============================
 -- Tabla Local / Visitante
 -- =============================
-CREATE TABLE Loc_Vis (
+CREATE TABLE g4_loc_vis (
     idLoc_Vis INT AUTO_INCREMENT PRIMARY KEY,
     nombreLoc_Vis VARCHAR(45) NOT NULL
 ) ENGINE=InnoDB;
@@ -68,7 +68,7 @@ CREATE TABLE Loc_Vis (
 -- =============================
 -- Tabla Campeonato
 -- =============================
-CREATE TABLE Campeonato (
+CREATE TABLE g4_campeonato (
     idCampeonato INT AUTO_INCREMENT PRIMARY KEY,
     nombreCampeonato VARCHAR(60) NOT NULL,
     fechaInicio DATE NOT NULL,
@@ -78,12 +78,12 @@ CREATE TABLE Campeonato (
 -- =============================
 -- Tabla Partido
 -- =============================
-CREATE TABLE Partido (
+CREATE TABLE g4_partido (
     idPartido INT AUTO_INCREMENT PRIMARY KEY,
     fechaPartido DATE NOT NULL,
     horaPartido TIME NOT NULL,
     idCampeonato INT NOT NULL,
-    FOREIGN KEY (idCampeonato) REFERENCES Campeonato(idCampeonato)
+    FOREIGN KEY (idCampeonato) REFERENCES g4_campeonato(idCampeonato)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
@@ -91,19 +91,19 @@ CREATE TABLE Partido (
 -- =============================
 -- Tabla Partido_Equipo
 -- =============================
-CREATE TABLE Partido_Equipo (
+CREATE TABLE g4_partido_equipo (
     idPartido_Equipo INT AUTO_INCREMENT PRIMARY KEY,
     idPartido INT NOT NULL,
     idEquipo INT NOT NULL,
     idLoc_Vis INT NOT NULL,
     golesEquipo INT DEFAULT 0,
-    FOREIGN KEY (idPartido) REFERENCES Partido(idPartido)
+    FOREIGN KEY (idPartido) REFERENCES g4_partido(idPartido)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    FOREIGN KEY (idEquipo) REFERENCES Equipo(idEquipo)
+    FOREIGN KEY (idEquipo) REFERENCES g4_equipo(idEquipo)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    FOREIGN KEY (idLoc_Vis) REFERENCES Loc_Vis(idLoc_Vis)
+    FOREIGN KEY (idLoc_Vis) REFERENCES g4_loc_vis(idLoc_Vis)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
@@ -111,7 +111,7 @@ CREATE TABLE Partido_Equipo (
 -- =============================
 -- Tabla Campeonato_Equipo
 -- =============================
-CREATE TABLE Campeonato_Equipo (
+CREATE TABLE g4_campeonato_equipo (
     idCampeonato_Equipo INT AUTO_INCREMENT PRIMARY KEY,
     idCampeonato INT NOT NULL,
     idEquipo INT NOT NULL,
@@ -122,10 +122,10 @@ CREATE TABLE Campeonato_Equipo (
     golesAFavor INT DEFAULT 0,
     golesEnContra INT DEFAULT 0,
     puntos INT DEFAULT 0,
-    FOREIGN KEY (idCampeonato) REFERENCES Campeonato(idCampeonato)
+    FOREIGN KEY (idCampeonato) REFERENCES g4_campeonato(idCampeonato)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    FOREIGN KEY (idEquipo) REFERENCES Equipo(idEquipo)
+    FOREIGN KEY (idEquipo) REFERENCES g4_equipo(idEquipo)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;

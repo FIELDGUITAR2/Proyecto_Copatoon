@@ -8,6 +8,8 @@ if($_SESSION["rol"] != "admin"){
 include ("presentacion/encabezado.php");
 include ("presentacion/menuAdmin.php");
 ?>
-
+<?php
+    include ("presentacion/Admin/PartidosGoles.php");
+?>
 </body>
 

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once("logica/Admin.php");
 require_once("logica/Campeonato.php");
 require_once("logica/Pais.php");
@@ -17,9 +17,9 @@ if (isset($_POST["insertar"])) {
     $idPais = $_POST["paisOrigen"];
 
     if (!empty($nombre) && !empty($idCampeonato) && !empty($idPais)) {
-        
+
     } else {
-        $mensaje = '<div class="alert alert-warning text-center fw-semibold mt-3">⚠️ Todos los campos son obligatorios.</div>';
+        $mensaje = '<div class="alert alert-warning text-center fw-semibold mt-3"> Todos los campos son obligatorios.</div>';
     }
 }
 ?>
@@ -39,7 +39,7 @@ include "presentacion/menuAdmin.php";
             </div>
 
             <div class="card-body bg-light p-4">
-                <form method="post" action="?pid=<?php base64_encode("logica/Admin/AniadirEquipo.php") ?>">
+                <form action="?pid=<?php echo base64_encode("presentacion/Admin/AniadirEquipo.php"); ?>" method="post">
                     <div class="mb-3">
                         <label for="nombreEquipo" class="form-label fw-semibold" style="color: #b30000;">
                             Nombre del Equipo
@@ -49,13 +49,14 @@ include "presentacion/menuAdmin.php";
                     </div>
 
                     <div class="mb-3">
-                        <label for="paisOrigen" class="form-label fw-semibold" style="color: #b30000;">País de Origen</label>
+                        <label for="paisOrigen" class="form-label fw-semibold" style="color: #b30000;">País de
+                            Origen</label>
                         <select class="form-select border-warning" id="paisOrigen" name="paisOrigen" required>
                             <option value="">Seleccione un país...</option>
                             <?php
-                            
+
                             $pais = new Pais();
-                            
+
                             $listaPaises = $pais->consultarPaises();
                             foreach ($listaPaises as $p) {
                                 echo "<option value='" . $p->getIdPais() . "'>" . $p->getNombrePais() . "</option>";
@@ -65,7 +66,8 @@ include "presentacion/menuAdmin.php";
                     </div>
 
                     <div class="mb-3">
-                        <label for="campeonato" class="form-label fw-semibold" style="color: #b30000;">Campeonato</label>
+                        <label for="campeonato" class="form-label fw-semibold"
+                            style="color: #b30000;">Campeonato</label>
                         <select class="form-select border-warning" id="campeonato" name="campeonato" required>
                             <option value="">Seleccione un campeonato...</option>
                             <?php
@@ -79,7 +81,8 @@ include "presentacion/menuAdmin.php";
                     </div>
 
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn fw-bold px-4 w-100" style="background-color: #000; color: #ffc107;" name="insertar">
+                        <button type="submit" class="btn fw-bold px-4 w-100"
+                            style="background-color: #000; color: #ffc107;" name="insertar">
                             <i class="fas fa-plus-circle me-2"></i>Agregar Equipo
                         </button>
                     </div>
